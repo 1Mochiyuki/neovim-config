@@ -5,6 +5,9 @@ return {
       inlay_hints = { enabled = true },
       servers = {
         gopls = {
+          analyses = {
+            unusedparams = true,
+          },
           hints = {
             assignVariableTypes = true,
             compositeLiteralFields = true,
