@@ -1,7 +1,8 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 require("mini.surround").setup()
-vim.cmd("colorscheme cosmos")
+-- vim.cmd("colorscheme bamboo")
+require("bamboo").load()
 return {
   "kdheepak/lazygit.nvim",
   cmd = {
