@@ -3,22 +3,7 @@ require("config.lazy")
 require("mini.surround").setup()
 require("Comment").setup()
 
-require("rose-pine").setup({
-  variant = "main",
-  dark_variant = "main",
-  extend_background_behind_borders = true,
-  enable = {
-    terminal = true,
-    legacy_highlights = true,
-    migrations = true,
-  },
-  styles = {
-    bold = true,
-    italic = true,
-    transparency = false,
-  },
-})
-vim.cmd("colorscheme rose-pine")
+vim.opt.scrolloff = 12
 return {
 
   "kdheepak/lazygit.nvim",
@@ -37,9 +22,5 @@ return {
   -- order to load the plugin when the command is run for the first time
   keys = {
     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
   },
 }
