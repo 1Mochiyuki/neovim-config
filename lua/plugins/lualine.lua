@@ -32,10 +32,22 @@ local config = {
         section_separators = { left = "", right = "" },
     },
     sections = {
-        lualine_a = { { "mode", separator = { left = " ", right = "" }, right_padding = 2, left_padding = 2 } },
-        lualine_b = { "branch", "diff", "filename" },
-        lualine_c = {},
-        lualine_x = {},
+        lualine_a = {
+            {
+                "mode",
+                separator = { left = " ", right = "" },
+                right_padding = 2,
+                left_padding = 2,
+            },
+        },
+        lualine_b = { "branch", "diff" },
+        lualine_c = { "diagnostics" },
+        lualine_x = {
+
+            function()
+                return "૮₍ • ˕ - ₎ა♡"
+            end,
+        },
         lualine_y = {
             function()
                 local clients = vim.lsp.get_clients()
@@ -46,17 +58,10 @@ local config = {
 
                 return msg .. clients[1].name
             end,
-            "filetype",
         },
         lualine_z = {
-
-            {
-                function()
-                    return os.date(" %a %I:%M %p")
-                end,
-                separator = { left = "", right = " " },
-                left_padding = 2,
-            },
+            { "filetype", icon_only = true, colored = false },
+            { "filename", separator = { right = " " }, right_padding = 2 },
         },
     },
     inactive_sections = {
