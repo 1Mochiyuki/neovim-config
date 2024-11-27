@@ -19,7 +19,7 @@ local config = {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "v0.5.1",
+    version = "v0.6.1",
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
@@ -82,7 +82,10 @@ local config = {
             autocomplete = {
                 border = "rounded",
 
-                draw = "reversed",
+                selection = "auto_insert",
+                draw = {
+                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+                },
             },
         },
 

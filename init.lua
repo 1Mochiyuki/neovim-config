@@ -5,10 +5,6 @@ require("mini.files").setup({
         go_in = "<CR>",
     },
 })
--- local lspconfig = require("lspconfig")
--- lspconfig.dartls.setup({
---   cmd = { "dart", "language-server", "--protocol=lsp" },
--- })
 require("catppuccin").setup({})
 
 if jit.os == "Windows" then
@@ -20,7 +16,7 @@ if jit.os == "Windows" then
     vim.o.shellxquote = ""
     vim.o.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
 end
--- vim.opt.guicursor = "n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:block-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
