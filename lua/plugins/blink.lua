@@ -19,14 +19,14 @@ local config = {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "v0.6.1",
+    version = "v0.6.2",
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
     -- build = 'RUSTFLA GS="-C target-feature=-crt-static" cargo build --release',
     sources = {
         completion = {
-            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev", "async_path" },
+            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev", "async_path", "dadbod" },
         },
         providers = {
             async_path = {
@@ -38,6 +38,7 @@ local config = {
                 module = "blink.compat.source",
                 score_offset = 3,
             },
+            dadbod = { name = "dadbod", module = "vim_dadbod_completion.blink" },
         },
     },
     opts = {
