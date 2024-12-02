@@ -95,9 +95,6 @@ local config = {
 
         -- experimental signature help support
         signature_help = { enabled = true },
-        ghost_text = {
-            enabled = true,
-        },
     },
 }
 return config
