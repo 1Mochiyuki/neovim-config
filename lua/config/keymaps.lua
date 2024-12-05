@@ -67,3 +67,7 @@ end)
 vim.keymap.set("n", "<leader>gf", function()
     neogit.open({ "log" })
 end)
+
+vim.keymap.set("n", "<leader>gps", function()
+    neogit.open({ "push" })
+end)
