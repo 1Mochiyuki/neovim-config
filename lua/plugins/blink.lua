@@ -19,7 +19,7 @@ local config = {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "v0.6.2",
+    version = "v0.7.3",
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
@@ -46,12 +46,13 @@ local config = {
         keymap = {
             ["<CR>"] = {
                 function(cmp)
-                    if cmp.is_in_snippet() then
+                    if cmp.snippet_active() then
                         return cmp.accept()
                     else
                         return cmp.select_and_accept()
                     end
                 end,
+                "snippet_forward",
                 "fallback",
             },
             ["<C-f>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
@@ -63,30 +64,36 @@ local config = {
             ["<C-h>"] = { "snippet_backward", "fallback" },
             ["<C-l>"] = { "snippet_forward", "fallback" },
         },
-        accept = {
-            auto_brackets = {
-                enabled = true,
+        completion = {
+
+            list = {
+                selection = "manual",
+                max_items = 150,
             },
-        },
-
-        highlight = {
-            -- sets the fallback highlight groups to nvim-cmp's highlight groups
-            -- useful for when your theme doesn't support blink.cmp
-            -- will be removed in a future release, assuming themes add support
-            use_nvim_cmp_as_default = true,
-        },
-        -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- adjusts spacing to ensure icons are aligned
-        nerd_font_variant = "normal",
-        windows = {
-
-            autocomplete = {
-                border = "rounded",
-
-                selection = "auto_insert",
-                draw = {
-                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+            accept = {
+                auto_brackets = {
+                    enabled = true,
                 },
+            },
+
+            highlight = {
+                -- sets the fallback highlight groups to nvim-cmp's highlight groups
+                -- useful for when your theme doesn't support blink.cmp
+                -- will be removed in a future release, assuming themes add support
+                use_nvim_cmp_as_default = true,
+            },
+            -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- adjusts spacing to ensure icons are aligned
+            nerd_font_variant = "normal",
+            menu = {
+                border = "rounded",
+                draw = {
+                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
+                },
+            },
+            window = {
+                border = "rounded",
+                scrollbar = false,
             },
         },
 
@@ -94,7 +101,11 @@ local config = {
         -- accept = { auto_brackets = { enabled = true } }
 
         -- experimental signature help support
-        signature_help = { enabled = true },
+        signature = { enabled = true },
+
+        -- appearance = {
+        --     nerd = "normal",
+        -- },
     },
 }
 return config
