@@ -66,9 +66,11 @@ local config = {
         },
         completion = {
 
+            keyword = {
+                range = "full",
+            },
             list = {
-                selection = "manual",
-                max_items = 150,
+                selection = "auto_insert",
             },
             accept = {
                 auto_brackets = {
