@@ -19,7 +19,10 @@ end, { expr = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 
-vim.keymap.set("n", " e", ":lua MiniFiles.open()<CR>")
+local miniFiles = require("mini.files")
+vim.keymap.set("n", " e", function()
+    miniFiles.open()
+end)
 vim.keymap.set("n", "<leader><leader>x", ":source %<cr>")
 
 local neogit = require("neogit")
