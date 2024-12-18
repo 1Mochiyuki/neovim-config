@@ -70,6 +70,7 @@ local config = {
                 range = "full",
             },
             trigger = {
+                show_on_accept_on_trigger_character = false,
                 show_on_insert_on_trigger_character = false,
             },
             list = {
