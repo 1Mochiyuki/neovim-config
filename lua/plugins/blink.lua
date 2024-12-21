@@ -19,14 +19,14 @@ local config = {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "v0.7.3",
+    version = "v0.8.0",
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
     -- build = 'RUSTFLA GS="-C target-feature=-crt-static" cargo build --release',
     sources = {
         completion = {
-            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev", "async_path", "dadbod" },
+            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev", "async_path" },
         },
         providers = {
             async_path = {
@@ -38,12 +38,12 @@ local config = {
                 module = "blink.compat.source",
                 score_offset = 3,
             },
-            dadbod = { name = "dadbod", module = "vim_dadbod_completion.blink" },
         },
     },
     opts = {
 
         keymap = {
+            preset = "none",
             ["<CR>"] = {
                 function(cmp)
                     if cmp.snippet_active() then
@@ -71,7 +71,7 @@ local config = {
             },
             trigger = {
                 show_on_accept_on_trigger_character = false,
-                show_on_insert_on_trigger_character = false,
+                show_on_insert_on_trigger_character = true,
             },
             list = {
                 selection = "auto_insert",
@@ -82,36 +82,27 @@ local config = {
                 },
             },
 
-            highlight = {
-                -- sets the fallback highlight groups to nvim-cmp's highlight groups
-                -- useful for when your theme doesn't support blink.cmp
-                -- will be removed in a future release, assuming themes add support
-                use_nvim_cmp_as_default = true,
-            },
-            -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-            -- adjusts spacing to ensure icons are aligned
-            nerd_font_variant = "normal",
             menu = {
                 border = "rounded",
+                scrollbar = false,
                 draw = {
-                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
+                    padding = 1,
+                    gap = 1,
+
+                    columns = {
+                        { "label", "label_description", gap = 1 },
+                        { "kind_icon", "kind" },
+                    },
                 },
             },
-            window = {
-                border = "rounded",
-                scrollbar = false,
-            },
         },
-
-        -- experimental auto-brackets support
-        -- accept = { auto_brackets = { enabled = true } }
+        appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = "mono",
+        },
 
         -- experimental signature help support
         signature = { enabled = true },
-
-        -- appearance = {
-        --     nerd = "normal",
-        -- },
     },
 }
 return config
