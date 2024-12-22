@@ -6,7 +6,6 @@ require("mini.files").setup({
     },
 })
 require("catppuccin").setup({})
-require("colorizer").setup()
 
 if jit.os == "Windows" then
     vim.o.shellcmdflag =
