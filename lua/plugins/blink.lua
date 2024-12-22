@@ -1,20 +1,34 @@
 local config = {
     "saghen/blink.cmp",
 
+    optional = true,
     lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
     dependencies = {
-        "rafamadriz/friendly-snippets",
+        { "rafamadriz/friendly-snippets" },
         {
             "saghen/blink.compat",
-            { "FelipeLema/cmp-async-path" },
+            -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+            version = "*",
+            -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+            lazy = true,
+            -- make sure to set opts so that lazy.nvim calls blink.compat's setup
             opts = {
-                -- lazydev.nvim only registers the completion source when nvim-cmp is
-                -- loaded, so pretend that we are nvim-cmp, and that nvim-cmp is loaded.
-                -- this option only has effect when using lazy.nvim
-                -- this should not be required in most cases
-                impersontate_nvim_cmp = true,
+                impersonate_nvim_cmp = true,
+                debug = true,
             },
+        },
+        { "FelipeLema/cmp-async-path" },
+        {
+            "supermaven-inc/supermaven-nvim",
+            config = function()
+                require("supermaven-nvim").setup({
+
+                    disable_inline_completion = true,
+                    disable_keymaps = true,
+                    log_level = "off",
+                })
+            end,
         },
     },
 
@@ -24,24 +38,33 @@ local config = {
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
     -- build = 'RUSTFLA GS="-C target-feature=-crt-static" cargo build --release',
-    sources = {
-        completion = {
-            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev", "async_path" },
-        },
-        providers = {
-            async_path = {
-                name = "async_path",
-                module = "blink.compat.source",
-            },
-            lazydev = {
-                name = "lazydev",
-                module = "blink.compat.source",
-                score_offset = 3,
-            },
-        },
-    },
     opts = {
 
+        sources = {
+            default = {
+
+                "lsp",
+                "path",
+                "snippets",
+                "buffer",
+                "async_path",
+                "supermaven",
+            },
+
+            providers = {
+                async_path = {
+                    name = "async_path",
+                    module = "blink.compat.source",
+                },
+                supermaven = {
+                    name = "supermaven",
+                    kind = "Supermaven",
+                    module = "blink.compat.source",
+                    score_offset = 100,
+                    async = true,
+                },
+            },
+        },
         keymap = {
             preset = "none",
             ["<CR>"] = {
@@ -81,6 +104,9 @@ local config = {
                     enabled = true,
                 },
             },
+            ghost_text = {
+                enabled = true,
+            },
 
             menu = {
                 border = "rounded",
@@ -101,7 +127,6 @@ local config = {
             nerd_font_variant = "mono",
         },
 
-        -- experimental signature help support
         signature = { enabled = true },
     },
 }
