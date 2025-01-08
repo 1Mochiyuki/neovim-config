@@ -5,7 +5,6 @@ require("mini.files").setup({
         go_in = "<CR>",
     },
 })
-require("catppuccin").setup({})
 
 if jit.os == "Windows" then
     vim.o.shellcmdflag =
