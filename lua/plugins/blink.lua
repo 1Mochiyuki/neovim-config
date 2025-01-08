@@ -5,7 +5,6 @@ local config = {
     lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
     dependencies = {
-        { "rafamadriz/friendly-snippets" },
         {
             "saghen/blink.compat",
             -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
@@ -33,7 +32,7 @@ local config = {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "v0.8.0",
+    version = "v0.9.2",
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
@@ -112,13 +111,8 @@ local config = {
                 border = "rounded",
                 scrollbar = false,
                 draw = {
-                    padding = 1,
-                    gap = 1,
 
-                    columns = {
-                        { "label", "label_description", gap = 1 },
-                        { "kind_icon", "kind" },
-                    },
+                    columns = { { "label", gap = 1 }, { "kind" } },
                 },
             },
         },

@@ -40,15 +40,24 @@ local config = {
                 left_padding = 2,
             },
         },
-        lualine_b = { "branch", "diff" },
-        lualine_c = { "diagnostics" },
-        lualine_x = {
-
-            function()
-                return "૮₍ • ˕ - ₎ა♡"
-            end,
+        lualine_b = {
+            "branch",
+            "diff",
         },
+
+        lualine_c = {
+            { "filename", path = 4 },
+        },
+        lualine_x = { { "diagnostics", sources = { "nvim_diagnostic" } } },
         lualine_y = {
+            {
+                function()
+                    return "@staticdots ૮₍ • ˕ - ₎ა♡"
+                end,
+            },
+        },
+        lualine_z = {
+
             function()
                 local clients = vim.lsp.get_clients()
                 local msg = "LSP: "
@@ -58,10 +67,6 @@ local config = {
 
                 return msg .. clients[1].name
             end,
-        },
-        lualine_z = {
-            { "filetype", icon_only = true, colored = false },
-            { "filename", separator = { right = " " }, right_padding = 2 },
         },
     },
     inactive_sections = {

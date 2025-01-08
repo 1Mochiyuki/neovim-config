@@ -5,17 +5,6 @@
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
-vim.keymap.set("n", "<leader>rne", function()
-    local cword = vim.fn.expand("<cword>")
-
-    return string.format("oif %s != nil {<CR>}<Esc>Oreturn %s<Esc>O", cword, cword)
-end, { expr = true })
-
-vim.keymap.set("n", "<leader>ne", function()
-    local cword = vim.fn.expand("<cword>")
-    return string.format("oif %s != nil {<CR>}<Esc>O", cword)
-end, { expr = true })
-
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 
@@ -74,3 +63,5 @@ end)
 vim.keymap.set("n", "<leader>gps", function()
     neogit.open({ "push" })
 end)
+
+vim.keymap.set("n", "<leader>va", "gg<S-v>G")
