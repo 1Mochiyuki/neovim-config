@@ -1,10 +1,10 @@
 return {
-    "NStefan002/visual-surround.nvim",
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
     config = function()
-        require("visual-surround").setup({
-            -- your config
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
         })
     end,
-    -- or if you don't want to change defaults
-    -- config = true
 }
