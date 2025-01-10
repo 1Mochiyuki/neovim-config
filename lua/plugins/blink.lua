@@ -32,18 +32,21 @@ local config = {
     },
 
     -- use a release tag to download pre-built binaries
-    version = "v0.9.2",
+    version = "v0.10.0",
     -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
     -- build = 'RUSTFLA GS="-C target-feature=-crt-static" cargo build --release',
     opts = {
 
+        snippets = {
+            preset = "luasnip",
+        },
         sources = {
             default = {
 
                 "lsp",
-                "path",
+                -- "path",
                 "snippets",
                 "buffer",
                 "async_path",
@@ -96,7 +99,7 @@ local config = {
                 show_on_insert_on_trigger_character = true,
             },
             list = {
-                selection = "auto_insert",
+                selection = { preselect = false, auto_insert = true },
             },
             accept = {
                 auto_brackets = {
