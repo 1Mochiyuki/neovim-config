@@ -33,6 +33,9 @@ return {
         end)
         harpoon:setup({})
 
+        -- TODO:
+        -- add fzf-lua config
+
         -- basic telescope configuration
         --     local conf = require("telescope.config").values
         --     local function toggle_telescope(harpoon_files)
