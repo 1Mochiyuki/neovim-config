@@ -17,7 +17,9 @@ local config = {
                 debug = true,
             },
         },
+        { "niuiic/blink-cmp-rg.nvim" },
         { "FelipeLema/cmp-async-path" },
+        { "moyiz/blink-emoji.nvim" },
         {
             "supermaven-inc/supermaven-nvim",
             config = function()
@@ -51,6 +53,8 @@ local config = {
                 "buffer",
                 "async_path",
                 "supermaven",
+                "ripgrep",
+                "emoji",
             },
 
             providers = {
@@ -58,12 +62,44 @@ local config = {
                     name = "async_path",
                     module = "blink.compat.source",
                 },
+                emoji = {
+                    module = "blink-emoji",
+                    name = "Emoji",
+                    score_offset = 15, -- Tune by preference
+                    opts = { insert = true }, -- Insert emoji (default) or complete its name
+                },
                 supermaven = {
                     name = "supermaven",
                     kind = "Supermaven",
                     module = "blink.compat.source",
                     score_offset = 100,
                     async = true,
+                },
+                ripgrep = {
+                    module = "blink-cmp-rg",
+                    name = "Ripgrep",
+                    kind = "Ripgrep",
+                    max_items = 3,
+                    min_keyword_length = 3,
+                    opts = {
+                        -- prefix_min_len = 3,
+                        get_command = function(context, prefix)
+                            return {
+                                "rg",
+                                "--no-config",
+                                "--json",
+                                "--word-regexp",
+                                "--ignore-case",
+                                "--",
+                                prefix .. "[\\w_-]+",
+                                vim.fs.root(0, ".git") or vim.fn.getcwd(),
+                            }
+                        end,
+
+                        get_prefix = function(context)
+                            return context.line:sub(1, context.cursor[2]):match("[%w_-]+$") or ""
+                        end,
+                    },
                 },
             },
         },
@@ -115,13 +151,47 @@ local config = {
                 scrollbar = false,
                 draw = {
 
-                    columns = { { "label", gap = 1 }, { "kind" } },
+                    columns = { { "kind_icon", "label", gap = 1 } },
                 },
             },
         },
+
         appearance = {
             use_nvim_cmp_as_default = true,
             nerd_font_variant = "mono",
+            kind_icons = {
+                Ripgrep = "[RG]",
+                Text = "󰉿",
+                Method = "󰊕",
+                Function = "󰊕",
+                Constructor = "󰒓",
+
+                Field = "󰜢",
+                Variable = "",
+                Property = "󰖷",
+
+                Class = "",
+                Interface = "",
+                Struct = "",
+                Module = "󰅩",
+
+                Unit = "󰪚",
+                Value = "󰦨",
+                Enum = "󰦨",
+                EnumMember = "󰦨",
+
+                Keyword = "󰻾",
+                Constant = "󰏿",
+
+                Snippet = "",
+                Color = "󰏘",
+                File = "󰈔",
+                Reference = "󰬲",
+                Folder = "󰉋",
+                Event = "󱐋",
+                Operator = "󰪚",
+                TypeParameter = "",
+            },
         },
 
         signature = { enabled = true },
