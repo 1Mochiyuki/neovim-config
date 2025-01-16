@@ -58,15 +58,19 @@ local config = {
         },
         lualine_z = {
 
-            function()
-                local clients = vim.lsp.get_clients()
-                local msg = "LSP: "
-                if #clients <= 0 then
-                    return msg .. "None"
-                end
+            {
+                separator = { left = "", right = " " },
+                function()
+                    local clients = vim.lsp.get_clients()
+                    local msg = "LSP: "
+                    if #clients <= 0 then
+                        return msg .. "None"
+                    end
 
-                return msg .. clients[1].name
-            end,
+                    return msg .. clients[1].name
+                end,
+                right_padding = 2,
+            },
         },
     },
     inactive_sections = {
