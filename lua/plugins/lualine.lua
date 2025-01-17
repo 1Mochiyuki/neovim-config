@@ -43,10 +43,14 @@ local config = {
         lualine_b = {
             "branch",
             "diff",
+            {
+                "filename",
+                path = 4,
+            },
         },
 
         lualine_c = {
-            { "filename", path = 4 },
+            "macro_recording",
         },
         lualine_x = { { "diagnostics", sources = { "nvim_diagnostic" } } },
         lualine_y = {
@@ -87,6 +91,10 @@ local config = {
 
 return {
     "nvim-lualine/lualine.nvim",
+    dependencies = {
+        -- display macro recording
+        { "yavorski/lualine-macro-recording.nvim" },
+    },
     config = function()
         require("lualine").setup(config)
     end,
