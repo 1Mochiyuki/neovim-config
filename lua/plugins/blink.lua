@@ -39,6 +39,7 @@ local config = {
     -- build = 'cargo build --release',
     -- On musl libc based systems you need to add this flag
     -- build = 'RUSTFLA GS="-C target-feature=-crt-static" cargo build --release',
+
     opts = {
 
         snippets = {
@@ -48,7 +49,6 @@ local config = {
             default = {
 
                 "lsp",
-                -- "path",
                 "snippets",
                 "buffer",
                 "async_path",
@@ -59,8 +59,8 @@ local config = {
 
             providers = {
                 async_path = {
-                    name = "async_path",
                     module = "blink.compat.source",
+                    name = "async_path",
                 },
                 emoji = {
                     module = "blink-emoji",
@@ -69,6 +69,7 @@ local config = {
                     opts = { insert = true }, -- Insert emoji (default) or complete its name
                 },
                 supermaven = {
+
                     name = "supermaven",
                     kind = "Supermaven",
                     module = "blink.compat.source",
@@ -76,6 +77,7 @@ local config = {
                     async = true,
                 },
                 ripgrep = {
+
                     module = "blink-cmp-rg",
                     name = "Ripgrep",
                     kind = "Ripgrep",
