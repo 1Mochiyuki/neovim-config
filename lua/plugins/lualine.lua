@@ -35,7 +35,7 @@ local config = {
         lualine_a = {
             {
                 "mode",
-                separator = { left = " ", right = "" },
+                separator = { left = " " },
                 right_padding = 2,
                 left_padding = 2,
             },
@@ -63,7 +63,7 @@ local config = {
         lualine_z = {
 
             {
-                separator = { left = "", right = " " },
+                separator = { right = " " },
                 function()
                     local clients = vim.lsp.get_clients()
                     local msg = "LSP: "
