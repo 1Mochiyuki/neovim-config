@@ -1,8 +1,21 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+require("mini.operators").setup()
+require("mini.splitjoin").setup()
 require("mini.files").setup({
     mappings = {
         go_in = "<CR>",
+    },
+})
+
+require("mini.surround").setup({
+    mappings = {
+        add = "<leader>sa",
+        delete = "<leader>sd",
+        find = "<leader>sf",
+        find_left = "<leader>sF",
+        highlight = "<leader>sh",
+        update_n_lines = "<leader>sn",
     },
 })
 
