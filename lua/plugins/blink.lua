@@ -85,7 +85,7 @@ local config = {
                     min_keyword_length = 3,
                     opts = {
                         -- prefix_min_len = 3,
-                        get_command = function(context, prefix)
+                        get_command = function(_, prefix)
                             return {
                                 "rg",
                                 "--no-config",

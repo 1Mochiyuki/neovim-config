@@ -25,7 +25,6 @@ return {
                         sky = "#91d7e3",
                         sapphire = "#7dc4e4",
                         blue = "#91bbf7",
-                        -- lavender = "#FFFFFF",
                         lavender = "#b9d1e4",
                         text = "#dadada",
                         subtext1 = "#b8c0e0",
@@ -44,5 +43,9 @@ return {
             })
             vim.cmd("colorscheme catppuccin")
         end,
+    },
+
+    {
+        "datsfilipe/vesper.nvim",
     },
 }
